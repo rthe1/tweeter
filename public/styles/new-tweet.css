@@ -1,0 +1,18 @@
+#tweet-text {
+  width: 100%;
+  background: transparent;
+  color: black;
+  resize: none;
+  border: 0 none;
+  border-bottom: 5px solid black;
+  border-color: black;
+}
+
+.form-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.maxCharColor {
+  color: red;
+}
