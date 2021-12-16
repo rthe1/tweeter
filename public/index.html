@@ -32,6 +32,10 @@
   <link rel="stylesheet" href="/styles/new-tweet.css" type="text/css" />
 
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/timeago.js/4.0.2/timeago.min.js" integrity="sha512-SVDh1zH5N9ChofSlNAK43lcNS7lWze6DTVx1JCXH1Tmno+0/1jMpdbR8YDgDUfcUrPp1xyE53G42GFrcM0CMVg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+
 </head>
 
 <body>
@@ -61,52 +65,25 @@
   <main class="container">
     <section class="new-tweet">
       <h2>Compose Tweet</h2>
-      <form method="POST" action="/tweets">
+      <form method="POST" action="/tweets" id="tweet-form">
         <label for="tweet-text">What are you humming about?</label>
         <textarea name="text" id="tweet-text"></textarea>
         <div class="form-group">
-          <button type="submit" class="btn btn-primary">Tweet</button>
+          <button type="submit" class="btn btn-primary" id="tweet-submit-button">Tweet</button>
           <output name="counter" class="counter" for="tweet-text">140</output>
         </div>
 
-        <!--Tweet Container-->
-        <article class="tweet-con">
-          <!--Top Tweet Con-->
-          <div class="tweet-con-top">
-            <div class="tweet-con-top-left">
-              <img width="50px" height="50px"
-                src="https://mariopartylegacy.com/wp-content/uploads/2018/07/goombaprofile.png">
-              <h5 class="username">Mr. Goomba</h5>
-            </div>
-            <!--space between-->
-            <h5 class="handle">@Goomba</h5>
-          </div>
-          <!--Top Tweet Con END-->
-
-
-          <div class="tweet-con-mid">
-            <h4>I Hate Mario.</h4>
-          </div>
-
-
-          <div class="tweet-con-bottom">
-            <div class="tweet-con-bottom-left">
-              <h6>Time Elapsed</h6>
-            </div>
-            <!--space between-->
-            <div class="tweet-con-bottom-right">
-              <i class="fa-solid fa-flag hovered"></i>
-              <i class="fa-solid fa-retweet hovered"></i>
-              <i class="fa-solid fa-heart hovered"></i>
-            </div>
-          </div>
-
-
-        </article>
-
       </form>
     </section>
+    
+    <div id="tweet">
+
+    </div>
+  
   </main>
+
+
+  
   <!-- External JS -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
