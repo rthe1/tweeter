@@ -3,44 +3,40 @@
  * jQuery is already loaded
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
+
+
 $(document).ready(function () {
 
-  // Fake data taken from initial-tweets.json
+  $('#tweet-form').submit(function (event) {
 
-  const data = [
-    {
-      "user": {
-        "name": "Newton",
-        "avatars": "https://i.imgur.com/73hZDYK.png"
-        ,
-        "handle": "@SirIsaac"
+    event.preventDefault();
+
+    $.ajax({
+      url: '/tweets',
+      method: 'POST',
+      data: $(this).serialize(),
+      success: () => {
+        $(this)[0].reset();
+
+        loadTweets();
+
       },
-      "content": {
-        "text": "If I have seen further it is by standing on the shoulders of giants"
-      },
-      "created_at": 1461116232227
-    },
-    {
-      "user": {
-        "name": "Descartes",
-        "avatars": "https://i.imgur.com/nlhLi3I.png",
-        "handle": "@rd"
-      },
-      "content": {
-        "text": "Je pense , donc je suis"
-      },
-      "created_at": 1461113959088
-    }
-  ]
+      error: (error) => {
+        console.log('this request failed and this was the error', error);
+      }
+    });
+
+
+
+  })
 
 
   const renderTweets = function (tweets) {
-    // loops through tweets
-    for (const tweet of tweets) {
-      $('#tweet').append(createTweetElement(tweet));
-    }
-    // calls createTweetElement for each tweet
-    // takes return value and appends it to the tweets container
+
+    $('#tweet').empty();
+    tweets.forEach(function (tweet) {
+      $('#tweet').append(createTweetElement(tweet))
+    })
   }
 
   const createTweetElement = function (tweet) {
@@ -74,35 +70,24 @@ $(document).ready(function () {
       <i class="fa-solid fa-heart hovered"></i>
     </div>
   </div>
-  
     
     `
     // ...
     return $tweet;
   }
 
-  renderTweets(data);
 
-
-  $('#tweet-form').submit(function (event) {
-    
-    event.preventDefault();
+  const loadTweets = function () {
 
     $.ajax({
-      url: 'http://localhost:8080/tweets',
-      method: 'POST',
-      data: $(this).serialize(),
-      success: (data) => {
-        console.log('this request succeeded and here\'s the data', data);
-      },
-      error: (error) => {
-        console.log('this request failed and this was the error', error);
-      }
-    });
+      url: '/tweets',
+      method: 'GET',
+    })
+      .then(function (results) {
+        renderTweets(results);
+      })
 
+  }
+  loadTweets();
 
-
-  })
-
- 
 })
