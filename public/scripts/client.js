@@ -40,7 +40,7 @@ $(document).ready(function () {
       setTimeout(function(){
         $(".error-message").empty();
       },1000)
-
+      return
     };
 
     // alert(textFromUser);
