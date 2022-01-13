@@ -60,7 +60,8 @@ $(document).ready(function () {
       }
     });
 
-
+    $("#tweet-text").empty();
+    $("output").text(140);
 
   })
 
