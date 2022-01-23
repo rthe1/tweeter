@@ -26,24 +26,17 @@ $(document).ready(function () {
 
     if(textArea.val() === null || textArea.val() === ''){
       let emptyError = `<div>PLEASE ENTER A TWEET</div>`
-      $(".error-message").append(emptyError)
-      
-      setTimeout(function(){
-        $(".error-message").empty();
-      },1000)
+      $(".error-message").html(emptyError)
+            return
     };
 
     if(textArea.val().length > 140){
-      let fullError = `<div>TOO MANY WORDS</div>`
-      $(".error-message").append(fullError)
-
-      setTimeout(function(){
-        $(".error-message").empty();
-      },1000)
+      let fullError = `<div> TWEET MUST BE LESS THAN 140 CHARACTERS </div>`
+      $(".error-message").html(fullError)
       return
     };
-
-    // alert(textFromUser);
+    
+    $(".error-message").empty();
 
     $.ajax({
       url: '/tweets',
